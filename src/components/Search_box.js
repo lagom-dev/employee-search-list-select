@@ -1,6 +1,7 @@
-import { ID_SEARCH_BOX, NAME_SEARCH, NAME_USERS, URL_GITHUB_API } from '../constants.js';
+import {ID_SEARCH_BOX, NAME_SEARCH, NAME_USERS, URL_GITHUB_API, JSON_PEOPLE} from '../constants.js';
 import Utils from '../Utils.js';
 import Result_list from './Result_list.js'
+
 
 export default class Search_box {
 
@@ -31,35 +32,23 @@ export default class Search_box {
 
 
     make_search_url(_topic) {
-        let search_url =  URL_GITHUB_API + NAME_SEARCH + '/' + NAME_USERS + '?q=' + _topic;
+        let search_url = URL_GITHUB_API + NAME_SEARCH + '/' + NAME_USERS + '?q=' + _topic;
         return search_url;
     }
 
-    get_items(_json) {
-        console.log(_json);
-        let items = Utils.get_prop_value(_json, 'items');
+    get_items(_json_items) {
+        console.log(_json_items);
+        let items = _json_items;
         let element_result_list = new Result_list(items, this.selection_callback);
         element_result_list.show();
     }
 
-    get_json_response(_response) {
-        let content_type = _response.headers.get('content-type');
-        if (content_type && content_type.indexOf('application/json') !== -1) {
-            return _response.json().then(json => this.get_items(json));
-        } else {
-            console.log("Oops, we haven't got JSON!");
-        }
-    }
 
     run_search(typed_value) {
-        let search_url = this.make_search_url(typed_value);
-        if (self.fetch) {
-            fetch(search_url)
-                .then(response => this.get_json_response(response));
-        } else {
-            // do something with XMLHttpRequest?
-        }
+        let results = JSON_PEOPLE.filter(function (person) {
+            return person.name.indexOf(typed_value) > -1 || person.email.indexOf(typed_value) > -1 || person.company.indexOf(typed_value) > -1 || person.address.indexOf(typed_value) > -1;
+        });
+        this.get_items(results);
     }
-
 
 }

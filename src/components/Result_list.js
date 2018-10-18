@@ -1,4 +1,4 @@
-import { NAME_HTML_ELEMENT, ID_RESULT_LIST, NAME_LOGIN, NAME_ID } from '../constants.js';
+import { NAME_HTML_ELEMENT, ID_RESULT_LIST, NAME_NAME, NAME_ID } from '../constants.js';
 import Utils from '../Utils.js';
 import List_item from './List_item.js';
 
@@ -49,8 +49,8 @@ export default class Result_list {
         this.clear();
         let items = _items || this.items;
         items.forEach(item => {
-            let username = Utils.get_prop_value(item, NAME_LOGIN);
-            let list_item = new List_item(username, username, this.selection_callback);
+            let name = Utils.get_prop_value(item, NAME_NAME);
+            let list_item = new List_item(name, name, this.selection_callback);
             let html_list_item = Utils.get_prop_value(list_item, NAME_HTML_ELEMENT);
             this.html_element.append(html_list_item);
         });
