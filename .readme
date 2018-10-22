@@ -1,3 +1,4 @@
-npm install
+sudo npm install
+npm run build
 npm run dev
 app will run on localhost:3000 if port is available

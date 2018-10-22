@@ -5,6 +5,8 @@
 #search_box {
     width: 100%;
     border-radius: 6px;
+    text-transform: uppercase;
+    padding: 3px;
 }
 
 .container_avatar {
