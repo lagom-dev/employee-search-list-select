@@ -1,56 +1,112 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>McFadyen Digital - UI test</title>
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <title>McFadyen Digital - UI test</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    McFadyen UI Test
+                </a>
+            </div>
+        </div>
+    </nav>
     <div id="main_container" class="container">
         <div class="row">
             <div class="col-md-2">
-                <label for="search_box">Digite o nome do Usuário:</label>
+                <label for="search_box">Type Employee Name:</label>
             </div>
-            <div class="col-md-10">
-                <input id="search_box" type="text" placeholder="Ex: Desbravador Software"></input>
-                <ul tab="0" id="result_list" class="result_list" />
+
+        </div>
+        <div class="row container_input_search">
+            <div class="col-xs-6">
+                <input tabindex="0" id="search_box" aria-label="Employee Search Text Input" type="text" title="Employee Search Text Input"
+                    placeholder="Name / Company / Email" data-dismiss="alert" />
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div id="employee_search_alert" class="alert alert-warning" role="alert" style="display:none;">
+                    Type in at least three charachters to start your search!
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="table-responsive container_result_list">
+                    <label for="result_list">Employees:</label>
+                    <table id="result_list" class="table table-hover table-striped result_list">
+                        <thead>
+                            <tr>
+                                <th scope="col">Picture</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Active</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Company</th>
+                                <th scope="col">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div id="no_results_alert" class="alert alert-warning" role="alert" style="display:none;">
+                        Your search did not return any results!
+                    </div>
+                    <div id="no_additional_results_alert" class="alert alert-warning" role="alert" style="display:none;">
+                        All results have been loaded!
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
+                <button id="btn_show_more" class="btn btn_show_more" title="Show More Results">Show more</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div id="container_user_info" class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="value login">Desbravador</h3>
                         <div class="row">
-                            <div class="col-md-3">
-                                <div id="container_avatar" class="container_avatar"><img class="avatar_url" /></div>
+                            <div class="col-xs-3">
+                                <div id="container_avatar" class="container_avatar"><img class="picture" src="http://placehold.it/128x128"
+                                        title="Employee Picture" alt="Employee Picture" longDesc="Expanded Employee Picture"
+                                    /></div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-xs-9">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <label>Bio:</label>
-                                        <span class="value bio" />
+                                        <label>Name:</label>
+                                        <span class="value name" />
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <label>E-mail:</label>
-                                                <span class="value email" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <label>Followers:
-                                                    <span class="badge value followers">5</span>
-                                                </label>
-                                                <label>Following:
-                                                    <span class="badge value following">5</span>
-                                                </label>
-                                            </div>
-                                        </div>
+                                        <label>Gender:</label>
+                                        <span class="value gender" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <label>Phone number:</label>
+                                        <span class="value phone" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <label>Company:</label>
+                                        <span class="value company" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <label>Address:</label>
+                                        <span class="value address" />
                                     </div>
                                 </div>
                             </div>
@@ -59,13 +115,31 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4>Repositories:</h4><button class="btn" /></button>
+                        <h4>Location:</h4>
                     </div>
-                    <div class="panel-body"><ul id="repos_list" class="repos_list" /></div>
+                    <div class="panel-body">
+                        <div id="employee_map"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA3xUKSdHbT1I27A3zhoR1iqCsSYGTb3gI",
+            authDomain: "employee-search-1540070248186.firebaseapp.com",
+            databaseURL: "https://employee-search-1540070248186.firebaseio.com",
+            projectId: "employee-search--1540070248186",
+            storageBucket: "",
+            messagingSenderId: "795250046092"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=ArNTG7Zjgl_TiUYsIgrBEnKuAErSTB11X1EyWcoymEWFx6HYWImNcEBJfIckTaFK'
+        async defer></script>
     <script type="module" src="./build/app.bundle.js"></script>
-    </body>
+</body>
+
 </html>

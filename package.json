@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "build": "webpack",
-    "start:dev": "webpack-dev-server --hot"
+    "watch": "webpack --watch",
+    "dev": "lite-server"
   },
   "author": "McFadyen Digital - Robert Wozniak",
   "license": "ISC",

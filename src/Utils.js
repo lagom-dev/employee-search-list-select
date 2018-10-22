@@ -1,4 +1,4 @@
-import {NAME_VALUE} from './constants.js';
+import { NAME_VALUE } from './constants.js';
 
 export default class Utils {
 
@@ -19,8 +19,8 @@ export default class Utils {
         if (typeof _value != 'undefined' && _value != null && _value != '') {
             value = _value || false;
         } else {
-            //    let caller = arguments ? arguments.callee.caller.name  : 'strict';
-            //    console.log('value is not valid: ', _value, 'caller: ', caller);
+            let caller = arguments ? arguments.callee.caller.name : 'strict';
+            console.log('value is not valid: ', _value, 'caller: ', caller);
             console.log('value is not valid: ', _value);
         }
         return value;
@@ -61,16 +61,16 @@ export default class Utils {
     static clear_field_values(_content_id_selector) {
         let content = document.getElementById(_content_id_selector);
         let value_fields = content.getElementsByClassName(NAME_VALUE);
-            value_fields.forEach(field => {
-                if (field && fied) {
-                    let tag_name = Utils.get_prop_value(field, 'tagName');
-                    if (tag_name === 'img') {
-                        field.src = '';
-                    } else {
-                        field.innerHTML = '';
-                    }
+        value_fields.forEach(field => {
+            if (field && fied) {
+                let tag_name = Utils.get_prop_value(field, 'tagName');
+                if (tag_name === 'img') {
+                    field.src = '';
+                } else {
+                    field.innerHTML = '';
                 }
-            });
+            }
+        });
     }
 
 
@@ -82,6 +82,52 @@ export default class Utils {
         return 0;
     }
 
+    static getMap(_lat, _long, _address, _title, _map_element_id) {
+
+        let map = new Microsoft.Maps.Map(document.getElementById(_map_element_id), {
+            center: new Microsoft.Maps.Location(_lat, _long)
+        });
+        let map_center = map.getCenter();
+        let loc_info = new Microsoft.Maps.Infobox(map_center, {
+            title: _title,
+            description: _address,
+        });
+        loc_info.setMap(map);
+    }
+
+    static show(_element){
+        _element.style.display = 'block';
+    }
+
+    static hide(_element){
+        _element.style.display = 'none';
+    }
+
+    static fade_out(_element) {
+        var op = 1;  
+        var timer = setInterval( () => {
+            if (op <= 0.1){
+                clearInterval(timer);
+                _element.style.display = 'none';
+            }
+            _element.style.opacity = op;
+            _element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+            op -= op * 0.1;
+        }, 50);
+    }
+
+    static fade_in(_element) {
+        var op = 0.1; 
+        _element.style.display = 'block';
+        var timer = setInterval( () =>{
+            if (op >= 1){
+                clearInterval(timer);
+            }
+            _element.style.opacity = op;
+            _element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+            op += op * 0.1;
+        }, 10);
+    }
 }
 
 
